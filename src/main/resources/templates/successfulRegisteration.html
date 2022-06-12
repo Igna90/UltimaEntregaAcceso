@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"> 
+	<head>
+		<title>Registration Success</title>
+	</head>
+	<body>
+		<div>
+			<center><h3><span th:text="'Hemos enviado un email de verificación al siguiente correo: ' + ${email}"></span></h3></center>
+			
+			<center><div class="checkbox login-options">
+						<a th:href="@{/auth/login}"> Regresar a
+							login</a>
+					</div></center>
+		</div>
+	</body>
+</html>

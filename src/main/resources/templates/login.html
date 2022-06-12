@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layoutBlank}">
+<head th:replace="layout/layoutBlank :: head2">
+<meta charset="utf-8" />
+
+<title>Login de Usuario</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+<!-- Custom styles for this template -->
+
+<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+
+	<section class="nombreClass">
+		<div class="container-fluid" layout:fragment="page-content">
+			<div class="container login-form">
+				<h2 class="login-title">- Login -</h2>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form class="form-signin" action="#"
+							th:action="@{/auth/login-post}" method="post">
+							<input type="hidden" name="${csrf.parameterName}"
+								value="${csrf.token}" />
+
+							<div class="input-group login-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-user"></span></span> <input type="email"
+									name="email" id="inputUsername" class="form-control"
+									placeholder="Email" th:value="${email}" />
+							</div>
+							<div class="input-group login-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-lock"></span></span> <input type="password"
+									name="password" id="inputPassword" class="form-control"
+									placeholder="Password" th:value="${password}" />
+								<div th:if="${error != null}" class="alert alert-danger"
+									role="alert">Usuario o contraseña incorrecta</div>
+								<div th:if="${logout != null}" class="alert alert-info"
+									role="alert">Has sido deslogueado con exito</div>
+
+							</div>
+
+							<button class="btn btn-primary btn-block login-button"
+								type="submit">
+								<i class="fa fa-sign-in"></i> Login
+							</button>
+							<div class="checkbox login-options">
+								¿No tienes tu cuenta?....<a th:href="@{/user/register}">REGISTRATE</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</section>
+	<th:block layout:fragment="page-scripts">
+		<!-- Bootstrap core JavaScript-->
+		<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+		<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+		<!-- Core plugin JavaScript-->
+		<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+		<!-- Custom scripts for all pages-->
+		<script th:src="@{js/sb-admin-2.min.js}"></script>
+		<script src="..js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</th:block>
+
+
+</body>
+</html>

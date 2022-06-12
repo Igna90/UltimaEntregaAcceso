@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="index:: head">
+<title>Actualizar usuario</title>
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<section class="EditUser">
+		<div class="container-fluid" layout:fragment="page-content">
+			<div class="container login-form">
+				<h2 class="login-title">- Actualizar Usuario -</h2>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form action="#" th:action="@{/user/editUser/edit}"
+							th:object="${user}" method="post">
+							<input type="hidden" name="${csrf.parameterName}"
+								value="${csrf.token}" /> <input type="hidden" th:field="*{id}"
+								id="id">
+
+
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-user"></span></span> <input
+									class="text set-width3" type="text" name="name"
+									placeholder="Nombre" th:field="*{name}">
+							</div>
+
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-globe"> </span></span> <input
+									class="text set-width3" type="text" name="surname"
+									placeholder="Apellidos" th:field="*{surname}">
+							</div>
+
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-file"> </span></span> <input
+									class="text set-width3" type="text" name="dni"
+									placeholder="dni" th:field="*{dni}">
+							</div>
+
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-calendar"> </span></span> <input
+									class="date set-width3" type="date" name="birthday"
+									placeholder="fecha" th:field="*{birthday}">
+							</div>
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-envelope"> </span></span> <input
+									type="email" class="text set-width3" name="email"
+									placeholder="Email" th:field="*{email}">
+							</div>
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-phone"> </span></span> <input
+									class="text set-width3" type="text" name="phone"
+									placeholder="Teléfono" th:field="*{phone}">
+							</div>
+
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-eye-close"> </span></span> <input
+									id="password" class="text set-width3" type="password"
+									name="password" placeholder="Password" th:field="*{password}">
+							</div>
+							<div class="input-group edit-userinput">
+								<span class="input-group-addon"><span
+									class="glyphicon glyphicon-eye-close"> </span></span> <input
+									id="confirmPassword" class="text set-width3" type="password"
+									placeholder="Confirmar password" th:field="*{passwordConfirm}">
+							</div>
+
+
+							<button class="btn btn-primary btn-block login-button"
+								type="submit">
+								<i class="fa fa-sign-in"></i> Actualiza tu perfil
+							</button>
+
+						</form>
+						<a href="#" th:href="@{/}">
+							<button class="btn btn-danger btn-block login-button"
+								type="submit">
+								<i class="fa fa-sign-in"></i> Cancelar
+							</button>
+						</a>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		
+		
+	</section>
+
+
+
+
+</body>
+</html>

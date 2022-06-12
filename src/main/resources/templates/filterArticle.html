@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8" />
+<title>Info Usuario</title>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+</head>
+
+<body class="main-layout">
+	<!-- header inner -->
+
+	<section id="crud" class="banner_main">
+		<div class="container-fluid" layout:fragment="page-content">
+
+			<div>
+				<div class="center-desk card-body">
+					<span class="wd fl" style="font-size: 55px; padding-left: 400px"><span
+						class="form-italic wd" th:text="${user.name}"> </span> <span
+						class="form-italic wd" th:text="${user.surname}"></span> </span>
+				</div>
+
+				<div class="card-text">
+					<span class="wd fl" style="font-size: 18px; padding-left: 90px">Correo
+						electronico: <span th:text="${user.email}"></span> <span
+						class="wd fl" style="font-size: 18px; padding-left: 320px">Telefono:
+							<span th:text="${user.phone}"></span>
+					</span>
+
+					</span>
+				</div>
+			</div>
+
+			<br> <br>
+			<h1>Articulos</h1>
+
+			<form class="pos" th:object="${article}"
+				th:action="@{/user/infoUserOrderCategory/} + ${user.id}"
+				method="get">
+				<div class="input-group register-userinput">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon-user"></span></span> <i
+						class="fas fa-solid fas fa-filter"></i><select
+						th:field="*{categoryId}" class="text" name="categoryId">
+						<option th:each="category:${categories}" th:value="${category.id}"
+							th:text="${category.name}" />
+					</select>
+				</div>
+
+
+				<button type="submit" class="btn btn-default">Filtrar por categoria</button>
+			</form>
+			<a class="nav-link" th:href="@{/user/infoUserOrderbyPrice/} + ${user.id}"
+				> <i
+				class="fas fa-solid fas fa-filter"></i><span>Precio:Mas bajo A mas alto</span></a>
+
+			<table class="table pt-5">
+				<thead>
+					<tr>
+
+						<th>Imagen</th>
+						<th>Nombre</th>
+						<th>Descripcion</th>
+						<th>Código</th>
+						<th>Precio</th>
+						<th>Categoria</th>
+						<th>Vendedor</th>
+
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${#lists.isEmpty(articles)}">
+						<td> <h1>No hay articulos disponibles</h1></td>
+					</tr>
+					<tr th:each="article:${articles}">
+						<td><img th:src="@{/img/} + ${article.image}"
+							style="max-width: 15%; max-height: 15%" /></td>
+						<td th:text="${article.name}"></td>
+
+						<td th:text="${article.description}"></td>
+						<td th:text="${article.code}"></td>
+						<td th:text="${article.price}"></td>
+						<td th:text="${article.categoryId.name}"></td>
+						<td><a
+							class="sidebar-brand d-flex align-items-center justify-content-center"
+							th:href="@{/user/infoUser/} + ${article.usersId.id}"
+							th:text="${article.usersId.name}"></a></td>
+
+					</tr>
+				</tbody>
+			</table>
+
+
+
+		</div>
+
+
+
+
+
+	</section>
+	<th:block layout:fragment="page-scripts">
+		<!-- Bootstrap core JavaScript-->
+		<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+		<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+		<!-- Core plugin JavaScript-->
+		<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+		<!-- Custom scripts for all pages-->
+		<script th:src="@{js/sb-admin-2.min.js}"></script>
+		<script src="..js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</th:block>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

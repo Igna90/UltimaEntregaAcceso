@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8" />
+<title>Comentarios</title>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
+
+</head>
+
+
+<body class="main-layout">
+	<!-- header inner -->
+
+	<section id="crud" class="banner_main">
+		<div class="container-fluid" layout:fragment="page-content">
+
+
+
+			<div class="center-desk card-body">
+				<span class="wd fl" style="font-size: 55px; padding-left: 400px"><span
+					class="form-italic wd" th:text="${user.name}"> </span> <span
+					class="form-italic wd" th:text="${user.surname}"></span> </span>
+			</div>
+
+
+
+			<form class="mt-5" method="post" action="#"
+				th:action="@{/user/commentsCreate/} + ${user.id}"
+				th:object="${comment}">
+
+
+				<input type="hidden" name="${csrf.parameterName}"
+					value="${csrf.token}" />
+
+				<h5 style="text-decoration: underline;">
+					Deja tu opinión a <span class="form-italic wd"
+						th:text="${user.name}"> </span>
+				</h5>
+
+				<div class="rate">
+
+					<input type="radio" id="star5" name="rate" value="5"
+						th:field="*{stars}" /> <label for="star5" title="text">5
+						stars</label> <input type="radio" id="star4" name="rate" value="4"
+						th:field="*{stars}" /> <label for="star4" title="text">4
+						stars</label> <input type="radio" id="star3" name="rate" value="3"
+						th:field="*{stars}" /> <label for="star3" title="text">3
+						stars</label> <input type="radio" id="star2" name="rate" value="2"
+						th:field="*{stars}" /> <label for="star2" title="text">2
+						stars</label> <input type="radio" id="star1" name="rate" value="1"
+						th:field="*{stars}" /> <label for="star1" title="text">1
+						star</label>
+				</div>
+
+
+
+				<textarea name="text" rows="3" cols="137"
+					style="background-color: #f8f8f8;"
+					placeholder="Escribe aquí tu comentario..."></textarea>
+				<button class="btn btn-primary btn-block "
+					style="text-align: center; position: center" type="submit">
+					<i class="fa fa-sign-in"></i> Deja tu opinión a <span
+						class="form-italic wd" th:text="${user.name}"> </span>
+				</button>
+
+			</form>
+
+			<a href="#" th:href="@{/user/infoUser/} + ${user.id}">
+				<button class="btn btn-danger btn-block"
+					style="text-align: center; position: center; margin-top: 10px"
+					type="submit">
+					<i class="fa fa-sign-in"></i> Volver
+				</button>
+			</a> <br> <br> <br>
+
+			<h2 class="login-title">- Comentarios -</h2>
+
+
+			<div th:each="comment:${comments}" class="card"
+				style="width: 72rem; margin-top: 10px; background-color: #D3EFF2">
+
+				<div class="card-body">
+					<h5 class="card-title  text-success"
+						th:text="${comment.authorId.name}"></h5>
+					<div class="card-text">
+						Valoración: <strong th:text="${comment.stars} + '/5'"></strong>
+					</div>
+
+					<p class="card-text" th:text="${comment.text}"></p>
+					<p class="card-text"
+						th:text="${#dates.format(comment.registerDate, 'dd-MMM-yyyy')}"></p>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+
+</body>
+</html>

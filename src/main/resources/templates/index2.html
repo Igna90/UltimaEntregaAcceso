@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layoutBlank}">
+<head th:replace="layout/layoutBlank :: head2">
+<meta charset="utf-8" />
+
+<title>Inicio</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom styles for this template -->
+
+<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<section class="nombreClass">
+		<div class="container-fluid" layout:fragment="page-content">
+
+
+
+				<img src="../static/img/portada.png" th:src="@{/img/portada.png}"
+					style="border-radius: 50%; padding-left:350px" />
+
+				<div class="panel panel-default">
+					<div class="panel-body"></div>
+				</div>
+			
+	</section>
+
+
+
+<!-- <th:block layout:fragment="page-scripts"> -->
+<!-- 	<!-- Bootstrap core JavaScript--> -->
+<!-- 	<script th:src="@{vendor/jquery/jquery.min.js}"></script> -->
+<!-- 	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script> -->
+
+<!-- 	<!-- Core plugin JavaScript--> -->
+<!-- 	<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script> -->
+
+<!-- 	<!-- Custom scripts for all pages--> -->
+<!-- 	<script th:src="@{js/sb-admin-2.min.js}"></script> -->
+<!-- 		<script src="..js/jquery.js"></script> -->
+<!-- 		<script src="js/bootstrap.min.js"></script> -->
+<!-- 	</th:block> -->
+
+
+</body>
+</html>

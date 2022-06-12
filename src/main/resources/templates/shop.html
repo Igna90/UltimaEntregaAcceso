@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="layout/layout :: head">
+<title>Articulos</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link href="#" th:href="@{/css/style.css}" rel="stylesheet" />
+
+</head>
+
+
+<body class="main-layout">
+	<!-- header inner -->
+
+	<section id="crud" class="banner_main">
+		<div class="container-fluid" layout:fragment="page-content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="card-title">Articulos</h5>
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Imagen</th>
+											<th>Nombre</th>
+											<th>Descripcion</th>
+											<th>Precio</th>
+											<th>Categoria</th>
+											<th>Stock</th>
+											<th>Añadir</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="article:${articles}">
+										<form th:action="@{/user/addArticle}" th:object="${article}" method="post">
+											<td><img th:src="@{/img/} + ${article.image}"
+												style="max-width: 15%; max-height: 15%" /></td>
+											<td th:text="${article.name}"></td>
+											<td th:text="${article.description}"></td>
+											<td th:text="${article.price}"></td>
+											<td th:text="${article.categoryId.name}"></td>
+											<td th:text="${article.stock}"></td>
+											<td><input type="hidden" th:name="id"
+												th:value="${article.id}" class="form-control" />
+												<button type="submit" class="btn btn-outline-warning">Añadir al carrito</button>
+									</form>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</section>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>sala de chat</title>
+</head>
+<body>
+<label id="msg" >no conectado</label><br/>
+<button id="connect" onclick="connect()">conexión</button>
+<button id="disConnect" disabled="disabled" onclick="disConnect()">desconectar</button>
+<label id="username" ></label>
+<br/>
+<textarea id="getMsg" rows="25" cols="60" disabled="disabled"></textarea><br/>
+<textarea id="sendMsg" rows="3" cols="60"></textarea><br/>
+<button id="send" onclick="sendMsg()" disabled="disabled">enviar</button>
+<script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script> 
+<script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript">
+function connect(){
+    var username=prompt("Ingrese su nombre de usuario");
+    if(username==null||username==""){
+        alert("Necesitas ingresar tu nombre de usuario para conectarte");
+    }
+    else{
+        var socket=new SockJS("/endpointWisely");
+        stompClient=Stomp.over(socket);
+        stompClient.connect({},function(frame){
+            document.getElementById("username").innerHTML=username;
+            document.getElementById("connect").disabled=true;
+            document.getElementById("disConnect").disabled=false;
+            document.getElementById("send").disabled=false;
+            document.getElementById("msg").innerHTML="conexión exitosa";
+            stompClient.subscribe('/public/getResponse', function (response){
+                var msg=JSON.parse(response.body).responseMsg;
+                document.getElementById("getMsg").append(msg);
+                })
+            },function(error){
+            document.getElementById("msg").innerHTML="La conexión falló";
+            }); 
+
+    }
+}
+function disConnect(){
+    document.getElementById("username").innerHTML=null;
+    document.getElementById("connect").disabled=false;
+    document.getElementById("disConnect").disabled=true;
+    document.getElementById("send").disabled=true;
+    ocument.getElementById("msg").innerHTML="no conectado";
+    if(stompClient!=null){
+        stompClient.disconnect();
+    }
+}
+function sendMsg(){
+    var name=document.getElementById("username").innerHTML;
+    var msg=document.getElementById("sendMsg").value;
+    stompClient.send("/publicChat",{},JSON.stringify({'name':name,'msg':msg}));
+}
+</script>
+</body>
+</html>

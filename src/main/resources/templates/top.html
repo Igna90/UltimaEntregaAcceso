@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8" />
+<title>Info Usuario</title>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+</head>
+
+<body class="main-layout">
+	<!-- header inner -->
+
+	<section id="crud" class="banner_main">
+		<div class="container-fluid" layout:fragment="page-content">
+
+
+			<h1>Ranking ventas</h1>
+
+			<table class="table pt-5">
+				<thead>
+					<tr>
+
+						<th>Usuario</th>
+						<th>Email</th>
+						<th>Telefono</th>
+						<th>Ventas</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user:${users}">
+
+						<td th:text="${user.name}"></td>
+						<td th:text="${user.email}"></td>
+						<td th:text="${user.phone}"></td>
+						<td th:text="${user.numVentas}"></td>
+
+
+
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</section>
+	<th:block layout:fragment="page-scripts">
+		<!-- Bootstrap core JavaScript-->
+		<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+		<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+		<!-- Core plugin JavaScript-->
+		<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+		<!-- Custom scripts for all pages-->
+		<script th:src="@{js/sb-admin-2.min.js}"></script>
+		<script src="..js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</th:block>
+</body>
+</html>
