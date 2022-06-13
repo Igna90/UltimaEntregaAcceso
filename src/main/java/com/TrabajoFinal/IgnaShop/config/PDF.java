@@ -31,7 +31,7 @@ public class PDF {
 
 	private void write(PdfPTable tabla) {
 		PdfPCell cell = new PdfPCell();
-		cell.setPadding(5);
+		cell.setPadding(6);
 		cell.setBackgroundColor(Color.CYAN);
 
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
@@ -44,6 +44,10 @@ public class PDF {
 
 		cell.setPhrase(new Phrase("Descripcion", font));
 		tabla.addCell(cell);
+		
+		cell.setPhrase(new Phrase("Vendedor", font));
+		tabla.addCell(cell);
+		
 		cell.setPhrase(new Phrase("Precio", font));
 		tabla.addCell(cell);
 	}
@@ -53,9 +57,11 @@ public class PDF {
 		for (ArticleEntity article : list) {
 			tabla.addCell(article.getName());
 			tabla.addCell(article.getDescription());
+			tabla.addCell(article.getUsersId().getName());
 			tabla.addCell(String.valueOf(article.getPrice()));
 			total += article.getPrice();
 		}
+		tabla.addCell("");
 		tabla.addCell("");
 		tabla.addCell("");
 		tabla.addCell("Total: " + String.valueOf(total) + " €");
@@ -81,9 +87,9 @@ public class PDF {
 
 		document.add(p);
 
-		PdfPTable tabla = new PdfPTable(3);
+		PdfPTable tabla = new PdfPTable(4);
 		tabla.setWidthPercentage(100f);
-		tabla.setWidths(new float[] { 1.5f, 3.5f, 1.5f });
+		tabla.setWidths(new float[] { 1.5f, 3.5f, 1.5f, 1.2f });
 		tabla.setSpacingBefore(15);
 
 		write(tabla);
