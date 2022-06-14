@@ -82,7 +82,7 @@ public class PDF {
 				"src\\main\\resources\\static\\img\\sdb-logo-big.png");
 		document.add(jpg);
 		
-		Paragraph p = new Paragraph("Detalle de compra", font);
+		Paragraph p = new Paragraph("Factura de compra", font);
 		p.setAlignment(Paragraph.ALIGN_CENTER);
 
 		document.add(p);
